@@ -47,15 +47,15 @@ except Exception as e:
 # --- RAG 文件設定 ---
 # 使用 PREDEFINED_FILES 列表來指定多個文件
 PREDEFINED_FILES = [
-    r"static\Anthracnose.docx",
-    r"static\Erwinia.docx",
-    r"static\Fusarium.docx",
-    r"static\Phytophthora.docx",
+    r"knowledge\Anthracnose.docx",
+    r"knowledge\Erwinia.docx",
+    r"knowledge\Fusarium.docx",
+    r"knowledge\Phytophthora.docx",
 ]
 
-# 文件路徑為 static 資料夾
+# 文件路徑為 knowledge 資料夾
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
-DATA_FOLDER = os.path.join(PROJECT_ROOT, 'static')
+DATA_FOLDER = os.path.join(PROJECT_ROOT, 'knowledge')
 
 cc = OpenCC('s2t')  # 將簡體中文轉換成繁體中文
 load_dotenv()
@@ -255,12 +255,12 @@ def handle_message(event):
             return
 
         message_id = event.message.id
-        static_dir = 'run'
-        if not os.path.exists(static_dir):
+        run_dir = 'run'
+        if not os.path.exists(run_dir):
             # 確保 'run' 目錄存在以儲存臨時圖片
-            os.makedirs(static_dir)
+            os.makedirs(run_dir)
         
-        image_path = os.path.join(static_dir, f'temp_{message_id}.jpg')
+        image_path = os.path.join(run_dir, f'temp_{message_id}.jpg')
 
         try:
             message_content = line_bot_api.get_message_content(message_id)
@@ -356,14 +356,14 @@ def handle_message(event):
         reply_text = rag_answer or "未能獲取答案，或 RAG 系統未就緒。"
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text=reply_text))
 
-@app.route("/images/<filename>")
+@app.route("/run/<filename>")
 def serve_image(filename):
     # 從 'run' 目錄提供圖片
-    static_dir_abs = os.path.abspath('run')
-    image_abs_path = os.path.join(static_dir_abs, filename)
+    run_dir_abs = os.path.abspath('run')
+    image_abs_path = os.path.join(run_dir_abs, filename)
 
     # 安全檢查：確保路徑位於 run 目錄內
-    if not os.path.commonpath([static_dir_abs, image_abs_path]) == static_dir_abs:
+    if not os.path.commonpath([run_dir_abs, image_abs_path]) == run_dir_abs:
         app.logger.warning(f"嘗試存取位於 run 目錄之外的檔案: {filename}")
         return "Access denied", 403
         

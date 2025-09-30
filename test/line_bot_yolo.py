@@ -62,7 +62,7 @@ def handle_image_message(event):
             TextSendMessage(text=reply_text),
             ImageSendMessage(
                 original_content_url=f"https://e83f-140-130-89-129.ngrok-free.app/{os.path.basename(pred_path)}",
-                preview_image_url=f"https://e83f-140-130-89-129.ngrok-free.app/images/{os.path.basename(pred_path)}"
+                preview_image_url=f"https://e83f-140-130-89-129.ngrok-free.app/run/{os.path.basename(pred_path)}"
             )
         ]
     )
@@ -80,7 +80,7 @@ def handle_image_message(event):
         threading.Thread(target=remove_files, daemon=True).start()
     delayed_remove([image_path, pred_path], delay=30)
 
-@app.route("/images/<filename>")
+@app.route("/run/<filename>")
 def serve_image(filename):
     # 提供預測圖片下載服務
     abs_path = os.path.abspath(filename)

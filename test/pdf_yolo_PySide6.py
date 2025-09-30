@@ -32,7 +32,7 @@ cc = OpenCC('s2t')  # 將簡體中文轉換成繁體中文
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 
 # --- Langchain RAG 配置 ---
-PREDEFINED_FILE_NAME = r"static\蘭花病徵與診療方式.docx"
+PREDEFINED_FILE_NAME = r"knowledge\蘭花病徵與診療方式.docx"
 PREDEFINED_FILE_PATH = os.path.join(SCRIPT_DIR, PREDEFINED_FILE_NAME)
 
 # --- YOLO 配置 ---

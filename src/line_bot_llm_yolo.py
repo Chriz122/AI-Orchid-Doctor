@@ -35,9 +35,9 @@ handler = WebhookHandler(LINE_CHANNEL_SECRET)
 model = YOLO(r"models\best_sick_5.v7i.v11l.onnx")
 
 # --- RAG 文件設定 ---
-PREDEFINED_FILE_NAME = r"static\蘭花病徵與診療方式(4).docx"
+PREDEFINED_FILE_NAME = r"knowledge\蘭花病徵與診療方式(4).docx"
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
-PREDEFINED_FILE_PATH = os.path.join(PROJECT_ROOT, 'static')
+PREDEFINED_FILE_PATH = os.path.join(PROJECT_ROOT, 'knowledge')
 cc = OpenCC('s2t')  # 將簡體中文轉換成繁體中文
 load_dotenv()
 
@@ -234,7 +234,7 @@ def handle_message(event):
         reply_text = rag_answer or "未能獲取答案。"
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text=reply_text))
 
-@app.route("/images/<filename>")
+@app.route("/run/<filename>")
 def serve_image(filename):
     abs_path = os.path.abspath(filename)
     if not os.path.exists(abs_path):

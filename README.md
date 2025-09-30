@@ -17,7 +17,7 @@ yolo_LLM_linebot
 ├─ src                     # src 資料夾，包含執行腳本
 │  ├─ line_bot_llm_yolo.py    # Line Bot (LLM + YOLO)
 │  └─ line_bot_llm_yolov2.py  # Line Botv2 (LLM + YOLO)
-├─ static                     # static 資料夾，存放靜態文件
+├─ knowledge                  # knowledge 資料夾，存放靜態文件
 │  ├─ Anthracnose.docx        # 檔案：Anthracnose
 │  ├─ Erwinia.docx            # 檔案：Erwinia
 │  ├─ Fusarium.docx           # 檔案：Fusarium
