@@ -14,7 +14,7 @@ yolo_LLM_linebot
 ├─ models                  # models 資料夾，存放模型檔案
 │  └─ best_sick_5.v7i.v11l.onnx  # ONNX 模型檔案
 ├─ run                     # run 資料夾
-├─ script                  # script 資料夾，包含執行腳本
+├─ src                     # src 資料夾，包含執行腳本
 │  ├─ line_bot_llm_yolo.py    # Line Bot (LLM + YOLO)
 │  └─ line_bot_llm_yolov2.py  # Line Botv2 (LLM + YOLO)
 ├─ static                     # static 資料夾，存放靜態文件
