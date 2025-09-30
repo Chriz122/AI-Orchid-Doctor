@@ -4,7 +4,7 @@
 
 ## 操作範例
 
-[範例操作](assets\sample.jpg)
+![範例操作](assets\sample.jpg)
 
 ## 項目結構
 
